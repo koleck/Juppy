@@ -10,4 +10,8 @@ public class mainmeny : MonoBehaviour {
 		SceneManager.LoadScene ("Spelet");
 	}
 
+	public void QuitGame(){
+		Debug.Log ("QUIT");
+		Application.Quit ();
+	}
 }
