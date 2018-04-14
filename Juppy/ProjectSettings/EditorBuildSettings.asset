@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/main.unity
+    guid: c17c6560e516d461eba2d6b141ad88ed
+  - enabled: 1
+    path: Assets/Scenes/Spelet.unity
+    guid: 0c0cf23232f824cb38295648b98d8f2d
