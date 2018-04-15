@@ -211,7 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody2D: {fileID: 0}
-  JumpForce: 500
+  jumpForce: 400
+  horizontalMovementSpeed: 7
 --- !u!1 &890228665
 GameObject:
   m_ObjectHideFlags: 0
