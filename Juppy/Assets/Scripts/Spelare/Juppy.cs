@@ -2,36 +2,56 @@
 
 public class Juppy : MonoBehaviour {
 
-    [SerializeField]
-    Rigidbody2D rigidbody2D;
+    Rigidbody2D thisRigidbody2D;
+
+    Transform thisTransform;
 
     [SerializeField]
-    int jumpForce = 400;
+    int jumpForce = 1000000;
 
     [SerializeField]
-    int horizontalMovementSpeed = 7;
+    int horizontalMovementSpeed = 1000;
 
+    [SerializeField]
+    float sessionHeightScore = 0;
+
+    public float SessionHeightScore{ get{return sessionHeightScore;} }
+    
     // Use this for initialization
     void Start () {
-	rigidbody2D = this.GetComponent<Rigidbody2D>();
+	thisRigidbody2D = this.GetComponent<Rigidbody2D>();
+	thisTransform = this.GetComponent<Transform>();
     }
 	
     void Update() {
-        if (Input.GetKey("left")){
-	    //rigidbody2D.AddForce(transform.right * -movementForce);
-	    rigidbody2D.velocity = new Vector2(-horizontalMovementSpeed, rigidbody2D.velocity.y);
+	if(sessionHeightScore < thisTransform.position.y)
+	{
+	    sessionHeightScore = thisTransform.position.y;
 	}
-	if (Input.GetKey("right")){
-	    //    rigidbody2D.AddForce(transform.right * movementForce);
-	    rigidbody2D.velocity = new Vector2(horizontalMovementSpeed, rigidbody2D.velocity.y);
 
+
+	if (Input.GetKey("left")){
+	    thisRigidbody2D.velocity = new Vector2(-horizontalMovementSpeed, thisRigidbody2D.velocity.y);
+	}
+	else if (Input.GetKey("right")){
+	    thisRigidbody2D.velocity = new Vector2(horizontalMovementSpeed, thisRigidbody2D.velocity.y);
+	}
+	else{
+	    thisRigidbody2D.velocity = new Vector2(0, thisRigidbody2D.velocity.y);
 	}
     }
 
-    void OnCollisionEnter2D(Collision2D col) {
-	if(col.gameObject.tag == "Platta")
+    void OnTriggerEnter2D(Collider2D other) {
+	if(thisRigidbody2D.velocity.y < 0){
+
+	if(other.gameObject.tag == "Platta")
 	{
-	    rigidbody2D.AddForce(transform.up * jumpForce);
+	    // Reset momentum
+	    thisRigidbody2D.velocity = new Vector2(thisRigidbody2D.velocity.x, 0);
+
+	    // Make player jump
+	    thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
+	}
 	}
     }
 }

@@ -1,0 +1,26 @@
+using UnityEngine;
+
+public class Camera : MonoBehaviour {
+
+    float cameraPosition = 0;
+
+    Juppy juppy;
+
+    Transform thisTransform;
+
+
+    void Start () {
+	GameObject juppyObjekt = GameObject.FindGameObjectsWithTag("Juppy")[0];
+	juppy = juppyObjekt.GetComponent<Juppy>();
+
+	thisTransform = this.GetComponent<Transform>();
+    }
+
+
+    void Update() {
+	if(juppy.SessionHeightScore > cameraPosition){
+	    thisTransform.position = new Vector3(thisTransform.position.x, juppy.SessionHeightScore, thisTransform.position.z);
+	}
+    }
+
+}

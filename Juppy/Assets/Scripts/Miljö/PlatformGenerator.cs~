@@ -1,0 +1,44 @@
+using UnityEngine;
+
+public class PlatformGenerator : MonoBehaviour {
+
+    [SerializeField]
+    float lastGeneratedPlatformHeight = 0;
+
+    [SerializeField]
+    float juppyJumpHeight = 20;
+
+    [SerializeField]
+    float startGeneratingAt = 100;
+
+    [SerializeField]
+    float gameWidth = 30;
+
+    Juppy juppy;
+
+    [SerializeField]
+    GameObject platform;
+
+    Transform platformTransform;
+
+    void Start () {
+	platformTransform = GetComponent<Transform>();
+
+	GameObject juppyObjekt = GameObject.FindGameObjectsWithTag("Juppy")[0];
+	juppy = juppyObjekt.GetComponent<Juppy>();
+    }
+
+    void Update() {
+
+	if(platform != null){
+	    if(lastGeneratedPlatformHeight < startGeneratingAt + juppy.SessionHeightScore){
+		Instantiate(platform, new Vector2(gameWidth, lastGeneratedPlatformHeight + juppyJumpHeight), platformTransform.rotation);
+		lastGeneratedPlatformHeight = juppy.SessionHeightScore;
+	    }
+	}
+	else{
+	    Debug.LogError("ERROR: ingen platform prefab satt på platforms genereraren");
+	}
+
+    }
+}
