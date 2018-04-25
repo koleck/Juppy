@@ -64,5 +64,6 @@ public class Juppy : MonoBehaviour {
     {
         SceneManager.LoadScene("main");
     }
-  
+
+
 }
