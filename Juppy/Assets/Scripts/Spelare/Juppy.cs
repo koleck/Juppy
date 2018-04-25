@@ -64,11 +64,5 @@ public class Juppy : MonoBehaviour {
     {
         SceneManager.LoadScene("main");
     }
-    public void GameOver()
-    {
-        if (juppy < Platform.deconstructDistance)
-        {
-            ReturnToMenu();
-        }
-    }
+  
 }

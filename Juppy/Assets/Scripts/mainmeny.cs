@@ -14,6 +14,12 @@ public class mainmeny : MonoBehaviour {
         SceneManager.LoadScene("main");
     }
 
+    public void GoHighscore()
+    {
+        SceneManager.LoadScene("hs");
+    }
+
+
 	public void QuitGame(){
 		Debug.Log ("QUIT");
 		Application.Quit ();

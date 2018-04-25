@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio for Mac
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juppy", "Assembly-CSharp.csproj", "{E8EBF9BA-7A2F-0926-7E1C-241B84D82448}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juppy", "Assembly-CSharp-Editor.csproj", "{D0D9AA95-6F4E-952F-BEEE-545E1A2403B8}"
