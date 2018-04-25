@@ -7,6 +7,10 @@ public class Juppy : MonoBehaviour {
 
     Transform thisTransform;
 
+    Platform deconstructDistance;
+
+    Platform juppy;
+
     [SerializeField]
     int jumpForce = 1000000;
 
@@ -59,5 +63,12 @@ public class Juppy : MonoBehaviour {
     public void ReturnToMenu()
     {
         SceneManager.LoadScene("main");
+    }
+    public void GameOver()
+    {
+        if (juppy < Platform.deconstructDistance)
+        {
+            ReturnToMenu();
+        }
     }
 }

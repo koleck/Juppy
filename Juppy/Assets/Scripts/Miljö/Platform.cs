@@ -27,9 +27,5 @@ public class Platform : MonoBehaviour {
 	    Destroy(this.gameObject);
 	}
     }
-    public void GameOver() {
-        if (juppy.position < Platform.deconstructDistance) {
-            Juppy.ReturnToMenu();
-        }
-    }
+
 }
