@@ -10,6 +10,8 @@ public class Platform : MonoBehaviour {
 
     Juppy juppy;
 
+    Juppy ReturnToMenu;
+
     // Use this for initialization
     void Start () {
 	thisTransform = this.GetComponent<Transform>();
@@ -24,5 +26,10 @@ public class Platform : MonoBehaviour {
 	if(thisTransform.position.y < juppy.SessionHeightScore - deconstructDistance){
 	    Destroy(this.gameObject);
 	}
+    }
+    public void GameOver() {
+        if (juppy.position < Platform.deconstructDistance) {
+            Juppy.ReturnToMenu();
+        }
     }
 }

@@ -28,7 +28,8 @@ public class Juppy : MonoBehaviour {
 	if(sessionHeightScore < thisTransform.position.y)
 	{
 	    sessionHeightScore = thisTransform.position.y;
-	}
+
+    }
 
 
 	if (Input.GetKey("left")){
