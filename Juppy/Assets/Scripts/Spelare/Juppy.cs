@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Juppy : MonoBehaviour {
 
@@ -53,5 +54,9 @@ public class Juppy : MonoBehaviour {
 	    thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
 	}
 	}
+    }
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("main");
     }
 }
