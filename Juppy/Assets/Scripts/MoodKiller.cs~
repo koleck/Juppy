@@ -1,0 +1,14 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MoodKiller : MonoBehaviour {
+
+    public Health {get;set}
+
+    void Update() {
+	if(Health < 0){
+	    Destroy(this.gameObject);
+	}
+    }
+
+}
