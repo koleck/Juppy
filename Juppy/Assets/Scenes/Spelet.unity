@@ -258,11 +258,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4608724967135310, guid: 2630ecefd80e344ec9622a19c6986e9a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4608724967135310, guid: 2630ecefd80e344ec9622a19c6986e9a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -382
+      value: -403
       objectReference: {fileID: 0}
     - target: {fileID: 4608724967135310, guid: 2630ecefd80e344ec9622a19c6986e9a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -857,6 +857,50 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114160304408688182, guid: 3f93201b031ec429d92c5381482c68b1,
+        type: 2}
+      propertyPath: platforms.Array.data[0]
+      value: 
+      objectReference: {fileID: 1922432294025356, guid: d6a0cfb587b9c4354957865231800fca,
+        type: 2}
+    - target: {fileID: 114160304408688182, guid: 3f93201b031ec429d92c5381482c68b1,
+        type: 2}
+      propertyPath: platforms.Array.data[1]
+      value: 
+      objectReference: {fileID: 1542532568337260, guid: 117b083c396674fcca6b005941e59719,
+        type: 2}
+    - target: {fileID: 114160304408688182, guid: 3f93201b031ec429d92c5381482c68b1,
+        type: 2}
+      propertyPath: generateHorizontally
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114160304408688182, guid: 3f93201b031ec429d92c5381482c68b1,
+        type: 2}
+      propertyPath: platformGenerationOffset
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114160304408688182, guid: 3f93201b031ec429d92c5381482c68b1,
+        type: 2}
+      propertyPath: gameScreenBottom
+      value: -450
+      objectReference: {fileID: 0}
+    - target: {fileID: 114160304408688182, guid: 3f93201b031ec429d92c5381482c68b1,
+        type: 2}
+      propertyPath: yAxisPlatforms.Array.data[0]
+      value: 
+      objectReference: {fileID: 1902942021535884, guid: 7a0d59be90df8418b8425eda8b014b89,
+        type: 2}
+    - target: {fileID: 114160304408688182, guid: 3f93201b031ec429d92c5381482c68b1,
+        type: 2}
+      propertyPath: yAxisPlatforms.Array.data[1]
+      value: 
+      objectReference: {fileID: 1366770792830998, guid: b7cdd82f2cf07475892ca9d228ef7cf6,
+        type: 2}
+    - target: {fileID: 114160304408688182, guid: 3f93201b031ec429d92c5381482c68b1,
+        type: 2}
+      propertyPath: changePlatformGenerationAxisTime
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f93201b031ec429d92c5381482c68b1, type: 2}
   m_IsPrefabParent: 0
@@ -1139,6 +1183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e660d38175446148d6cf6312d41ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollVertically: 1
 --- !u!1001 &1458283875
 Prefab:
   m_ObjectHideFlags: 0

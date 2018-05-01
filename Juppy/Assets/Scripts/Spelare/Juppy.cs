@@ -27,7 +27,12 @@ public class Juppy : MonoBehaviour {
     [SerializeField]
     GameObject heartProjectile;
 
+    [SerializeField]
+    float sessionHighestXCoordinate = 0;
+
     public float SessionHeightScore{ get{return sessionHeightScore;} }
+
+    public float SessionHighestXCoordinate{ get{return sessionHighestXCoordinate;} }
 
     public int Hearts{ get{return hearts;} set{hearts = value;} }
 
@@ -43,6 +48,11 @@ public class Juppy : MonoBehaviour {
 	    sessionHeightScore = thisTransform.position.y;
 
     }
+	if(sessionHighestXCoordinate < thisTransform.position.x)
+	{
+	    sessionHighestXCoordinate = thisTransform.position.x;
+	}
+
 
 	if (Input.GetKeyDown("z")){
 	    ShootProjectile();

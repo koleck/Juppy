@@ -5,22 +5,26 @@ public class CameraController : MonoBehaviour {
     float cameraPosition = 0;
 
     Juppy juppy;
+    Transform juppyTransform;
 
     Transform thisTransform;
+
+    [SerializeField]
+    private bool scrollVertically;
+
+    public bool ScrollVertically { get{return scrollVertically;} set{scrollVertically = value;} }
 
 
     void Start () {
 	GameObject juppyObjekt = GameObject.FindGameObjectsWithTag("Juppy")[0];
 	juppy = juppyObjekt.GetComponent<Juppy>();
+	juppyTransform = juppy.GetComponent<Transform>();
 
 	thisTransform = this.GetComponent<Transform>();
     }
 
 
     void LateUpdate() {
-	if(juppy.SessionHeightScore > cameraPosition){
-	    thisTransform.position = new Vector3(thisTransform.position.x, juppy.SessionHeightScore, thisTransform.position.z);
-	}
+	thisTransform.position = new Vector3(juppyTransform.position.x, juppyTransform.position.y, thisTransform.position.z);
     }
-
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour {
 
-    float deconstructDistance = 700;
+    float deconstructDistance = 1500;
 
     Transform thisTransform;
 
