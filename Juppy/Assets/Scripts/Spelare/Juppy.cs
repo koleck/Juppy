@@ -64,8 +64,22 @@ public class Juppy : MonoBehaviour {
     public void ShootProjectile(){
 	if(hearts > 0){
 	    Instantiate(heartProjectile, thisTransform.position, thisTransform.rotation);
-	    hearts--;
+	   hearts--;
 	}
+   }
+
+    void OnCollisionEnter2D(Collision2D collision){
+        MoodKiller md = collision.collider.GetComponent<MoodKiller>();
+        if(md != null){
+            foreach(ContactPoint2D point in collision.contacts){
+                if(point.normal.y >= 0.9f){
+                    md.kill();
+                    hearts =+ 5;
+                } else {
+                    hearts--;
+                }
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -88,7 +102,6 @@ public class Juppy : MonoBehaviour {
     {
 	SceneManager.LoadScene("main");
     }
-
 
 
 }

@@ -14,4 +14,8 @@ public class MoodKiller : MonoBehaviour {
 	}
     }
 
+    public void kill(){
+        Destroy(this.gameObject);
+    }
+
 }
