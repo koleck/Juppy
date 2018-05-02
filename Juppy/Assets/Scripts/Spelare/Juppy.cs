@@ -62,10 +62,13 @@ public class Juppy : MonoBehaviour {
 	if (Input.GetKeyDown("z")){
 	    ShootProjectile();
 	}
+        Input.gyro.enabled = true;
+        float initialOrientationX = Input.gyro.rotationRateUnbiased.x;
+        float initialOrientationY = Input.gyro.rotationRateUnbiased.y;
+        thisRigidbody2D.AddForce(initialOrientationY * horizontalMovementSpeed, 0.0f, -initialOrientationX * horizontalMovementSpeed);
 
 
-
-	if (Input.GetKey("left")){
+        if (Input.GetKey("left")){
 	    thisRigidbody2D.velocity = new Vector2(-horizontalMovementSpeed, thisRigidbody2D.velocity.y);
 	}
 	else if (Input.GetKey("right")){
