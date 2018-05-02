@@ -11,3 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Spelet.unity
     guid: 0c0cf23232f824cb38295648b98d8f2d
+  - enabled: 1
+    path: Assets/Scenes/hs.unity
+    guid: f7c9a817e4e0b4470b5bef19f975f0c4
+  m_configObjects: {}
