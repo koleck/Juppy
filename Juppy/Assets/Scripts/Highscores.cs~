@@ -1,0 +1,25 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Highscores : MonoBehaviour {
+
+    static float highestHeight{get;set;}
+    static float highestMoodkillerCount{get;set;}
+    static float highestHeartCount{get;set;}
+
+    private Text heightText;
+    private Text moodKillerText;
+    private Text heartText;
+
+
+    void Start () {
+    }
+
+    void Update() {
+	heightText.text = highestHeight.ToString();
+
+	moodKillerText.text= highestMoodkillerCount.ToString();
+
+	heartText.text = highestHeartCount.ToString();
+    }
+}
