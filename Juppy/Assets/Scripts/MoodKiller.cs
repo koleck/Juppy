@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class MoodKiller : MonoBehaviour {
 
     [SerializeField]
-    int health = 2;
+    int health = 1;
 
     public int Health {get{return health;} set{health = value;}}
 

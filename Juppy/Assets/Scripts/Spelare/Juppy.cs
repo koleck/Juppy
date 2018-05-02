@@ -33,6 +33,8 @@ public class Juppy : MonoBehaviour {
     [SerializeField]
     float sessionHighestXCoordinate = 0;
 
+    Gyroscope gyro;
+
     public float SessionHeightScore{ get{return sessionHeightScore;}set{sessionHeightScore = value;} }
 
     public float SessionHighestXCoordinate{ get{return sessionHighestXCoordinate;} }
@@ -45,30 +47,36 @@ public class Juppy : MonoBehaviour {
     void Start () {
 	thisRigidbody2D = this.GetComponent<Rigidbody2D>();
 	thisTransform = this.GetComponent<Transform>();
+
+	if (SystemInfo.supportsGyroscope)
+	{
+	    gyro = Input.gyro;
+	    gyro.enabled = true;
+	}
     }
 	
     void Update() {
 	if(sessionHeightScore < thisTransform.position.y)
 	{
 	    sessionHeightScore = thisTransform.position.y;
+	}
 
-    }
 	if(sessionHighestXCoordinate < thisTransform.position.x)
 	{
 	    sessionHighestXCoordinate = thisTransform.position.x;
 	}
 
-
 	if (Input.GetKeyDown("z")){
 	    ShootProjectile();
 	}
-        Input.gyro.enabled = true;
-        float initialOrientationX = Input.gyro.rotationRateUnbiased.x;
-        float initialOrientationY = Input.gyro.rotationRateUnbiased.y;
-        thisRigidbody2D.AddForce(initialOrientationX * horizontalMovementSpeed, 0.0f, -initialOrientationX * horizontalMovementSpeed);
+
+	if (gyro != null)
+	{
+	    thisRigidbody2D.velocity = new Vector2(-Input.gyro.rotationRateUnbiased.y, thisRigidbody2D.velocity.y);
+	}
 
 
-        if (Input.GetKey("left")){
+	if (Input.GetKey("left")){
 	    thisRigidbody2D.velocity = new Vector2(-horizontalMovementSpeed, thisRigidbody2D.velocity.y);
 	}
 	else if (Input.GetKey("right")){

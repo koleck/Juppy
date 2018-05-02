@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-    float cameraPosition = 0;
-
     Juppy juppy;
     Transform juppyTransform;
 
