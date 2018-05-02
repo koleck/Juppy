@@ -16,6 +16,9 @@ public class Juppy : MonoBehaviour {
     int hearts;
 
     [SerializeField]
+    int moodkiller;
+
+    [SerializeField]
     int jumpForce = 1000000;
 
     [SerializeField]
@@ -35,6 +38,8 @@ public class Juppy : MonoBehaviour {
     public float SessionHighestXCoordinate{ get{return sessionHighestXCoordinate;} }
 
     public int Hearts{ get{return hearts;} set{hearts = value;} }
+
+    public int MoodKiller { get { return moodkiller; } set { moodkiller = value; } }
 
     // Use this for initialization
     void Start () {
