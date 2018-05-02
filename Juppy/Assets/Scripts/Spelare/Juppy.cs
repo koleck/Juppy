@@ -65,7 +65,7 @@ public class Juppy : MonoBehaviour {
         Input.gyro.enabled = true;
         float initialOrientationX = Input.gyro.rotationRateUnbiased.x;
         float initialOrientationY = Input.gyro.rotationRateUnbiased.y;
-        thisRigidbody2D.AddForce(initialOrientationY * horizontalMovementSpeed, 0.0f, -initialOrientationX * horizontalMovementSpeed);
+        thisRigidbody2D.AddForce(initialOrientationX * horizontalMovementSpeed, 0.0f, -initialOrientationX * horizontalMovementSpeed);
 
 
         if (Input.GetKey("left")){
