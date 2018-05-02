@@ -30,7 +30,7 @@ public class Juppy : MonoBehaviour {
     [SerializeField]
     float sessionHighestXCoordinate = 0;
 
-    public float SessionHeightScore{ get{return sessionHeightScore;} }
+    public float SessionHeightScore{ get{return sessionHeightScore;}set{sessionHeightScore = value;} }
 
     public float SessionHighestXCoordinate{ get{return sessionHighestXCoordinate;} }
 
@@ -104,10 +104,26 @@ public class Juppy : MonoBehaviour {
 		thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
 	    }
 	}
-	else if(other.tag == "MoodKiller"){
-	    ReturnToMenu();
+	if(other.tag == "MoodKiller"){
+	    Kill();
+	    other.GetComponent<MoodKiller>().kill();
+	}
+
+	if(other.name == "HeadHitbox"){
+	    other.gameObject.transform.parent.GetComponent<MoodKiller>().kill();
 	}
     }
+
+    public void Kill(){
+	if(hearts < 1){
+	    ReturnToMenu();
+	}
+	else{
+	    hearts--;
+	}
+    }
+
+
     public void ReturnToMenu()
     {
 	SceneManager.LoadScene("main");

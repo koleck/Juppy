@@ -31,12 +31,17 @@ public class PlatformGenerator : MonoBehaviour {
     GameObject moodKiller;
 
     [SerializeField]
+    GameObject livingMoodKiller;
+
+    bool livingMoodKillerCreated = false;
+
+    [SerializeField]
     bool generateHorizontally = false;
 
     Juppy juppy;
 
 
-    int moodKillerHeight = 500;
+    int moodKillerHeight = 100;
 
     System.Random rnd = new System.Random();
 
@@ -48,7 +53,6 @@ public class PlatformGenerator : MonoBehaviour {
 
 
     void Start () {
-
 	GameObject juppyObjekt = GameObject.FindGameObjectsWithTag("Juppy")[0];
 	juppy = juppyObjekt.GetComponent<Juppy>();
     }
@@ -73,6 +77,9 @@ public class PlatformGenerator : MonoBehaviour {
 	    GameObject platformToCreate = GetRandomPlatform();
 
 	    Instantiate(platformToCreate, new Vector2(newPlatformX, newPlatformY), platformToCreate.transform.rotation);
+
+	    AttemptGenerateHeart(lastGeneratedObjectX, lastGeneratedObjectY);
+
 	}
     }
 
@@ -94,47 +101,59 @@ public class PlatformGenerator : MonoBehaviour {
 	    lastGeneratedObjectX = newPlatformX;
 
 	    lastGeneratedObjectY = newPlatformY;
+
+	    AttemptGenerateHeart(lastGeneratedObjectX, lastGeneratedObjectY);
 	}
     }
 
-    void FixMe(){
+    void AttemptGenerateHeart(float x, float y){
+	if(rnd.Next(0, 50) == 0){
+	    float heartX = rnd.Next((int)x - 400, (int)x + 400);
+	    float heartY = rnd.Next((int)y - 400, (int)y + 400);
 
-
-	if(rnd.Next(0, 20) == 0){
-	    lastGeneratedObjectX = rnd.Next((int) lastGeneratedObjectX - objectSecondaryDistanceDelta, (int) lastGeneratedObjectX + objectSecondaryDistanceDelta);
-
-	    //	    Instantiate(heart, new Vector2(lastGeneratedObjectX, lastGeneratedObjectY + objectPrimaryDistanceDelta), objectToSpawn.transform.rotation);
+	    Instantiate(heart, new Vector2(heartX, heartY), heart.transform.rotation);
 	}
     }
 
-    void CreateMoodKiller(){
+    GameObject CreateMoodKiller(){
 	lastGeneratedObjectX = rnd.Next((int) lastGeneratedObjectX - objectSecondaryDistanceDelta, (int) lastGeneratedObjectX + objectSecondaryDistanceDelta);
 
-	Instantiate(moodKiller, new Vector2(lastGeneratedObjectX, lastGeneratedObjectY + moodKillerHeight), moodKiller.transform.rotation);
+	return Instantiate(moodKiller, new Vector2(lastGeneratedObjectX, lastGeneratedObjectY + moodKillerHeight), moodKiller.transform.rotation);
     }
 
     void Update() {
 	if(changePlatformGenerationAxisTimer > changePlatformGenerationAxisTime)
 	{
-	    CreateMoodKiller();
-	    generateHorizontally = !generateHorizontally;
-	    changePlatformGenerationAxisTimer = 0;
+	    if(livingMoodKillerCreated == false){
+		livingMoodKiller = CreateMoodKiller();
+		livingMoodKillerCreated = true;
+	    }
+
+	    if(livingMoodKiller == null){
+		juppy.SessionHeightScore = juppy.gameObject.GetComponent<Transform>().position.y;
+		generateHorizontally = !generateHorizontally;
+		changePlatformGenerationAxisTimer = 0;
+		livingMoodKillerCreated = false;
+	    }
 	}
 	else{
 	    changePlatformGenerationAxisTimer++;
 	}
 
 	if(platforms.Length != 0){
-	    if(generateHorizontally == true){
-		AttemptGeneratePlatformHorizontally();
-	    }
-	    else {
-		AttemptGeneratePlatformVertically();
+	    if(livingMoodKillerCreated == false){
+
+		if(generateHorizontally == true){
+		    AttemptGeneratePlatformHorizontally();
+		}
+		else {
+		    AttemptGeneratePlatformVertically();
+		}
 	    }
 	}
 	else{
 	    Debug.LogError("ERROR: ingen platform prefab satt på platforms genereraren");
 	}
 
-    }
+	}
 }

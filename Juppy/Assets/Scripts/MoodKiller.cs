@@ -10,7 +10,7 @@ public class MoodKiller : MonoBehaviour {
 
     void Update() {
 	if(Health <= 0){
-	    Destroy(this.gameObject);
+	    kill();
 	}
     }
 
