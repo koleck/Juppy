@@ -41,7 +41,7 @@ public class PlatformGenerator : MonoBehaviour {
     Juppy juppy;
 
 
-    int moodKillerHeight = 100;
+    int moodKillerHeight = -100;
 
     System.Random rnd = new System.Random();
 
