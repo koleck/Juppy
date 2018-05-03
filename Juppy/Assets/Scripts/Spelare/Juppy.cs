@@ -152,9 +152,18 @@ public class Juppy : MonoBehaviour {
     }
 
     void UpdateHighscores(){
-	Highscores.HighestHeartCount = hearts;
-	Highscores.HighestHeight = (int) sessionHeightScore;
-	Highscores.HighestMoodkillerCount = moodkillersDefeated;
+	if(hearts > Highscores.HighestHeartCount)
+	{
+		Highscores.HighestHeartCount = hearts;
+	}
+	    	if(sessionHeightScore > Highscores.HighestHeight)
+	{
+		Highscores.HighestHeight = sessionHeightScore;
+	}
+	    	if(moodkillersDefeated > Highscores.HighestMoodkillerCount)
+	{
+		Highscores.HighestMoodkillerCount = moodkillersDefeated;
+	}
     }
 
     public void ReturnToMenu()
