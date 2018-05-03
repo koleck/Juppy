@@ -18,7 +18,7 @@ public class PlatformGenerator : MonoBehaviour {
     float platformGenerationOffset = 1500;
 
     [SerializeField]
-    int yAxisPlatformsMaxDeltaHeight = 300;
+    int yAxisPlatformsMaxDeltaHeight = 200;
 
 
     [SerializeField]
