@@ -113,6 +113,7 @@
     <Compile Include="Assets\Scripts\HeartCounter.cs" />
     <Compile Include="Assets\Scripts\HeartProjectile.cs" />
     <Compile Include="Assets\Scripts\HeightCounter.cs" />
+    <Compile Include="Assets\Scripts\Highscores.cs" />
     <Compile Include="Assets\Scripts\mainmeny.cs" />
     <Compile Include="Assets\Scripts\Miljö\Heart.cs" />
     <Compile Include="Assets\Scripts\Miljö\killer.cs" />
@@ -164,10 +165,10 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>/Users/n/Documents/GitHub/2/Juppy/Juppy/Juppy/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>/Users/n/Documents/GitHub/Juppy/Juppy/Juppy/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>/Users/n/Documents/GitHub/2/Juppy/Juppy/Juppy/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>/Users/n/Documents/GitHub/Juppy/Juppy/Juppy/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
