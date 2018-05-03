@@ -131,6 +131,10 @@ public class Juppy : MonoBehaviour {
 	if(other.tag == "HeadHitbox"){
 	    other.gameObject.transform.parent.GetComponent<MoodKiller>().kill();
 	    moodkillersDefeated ++;
+	    
+            // hoppa
+	    thisRigidbody2D.velocity = new Vector2(thisRigidbody2D.velocity.x, 0);
+	    thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
 	}
 
 	if(other.tag == "Heart"){
