@@ -8,6 +8,8 @@ TagManager:
   - Juppy
   - Meny
   - MoodKiller
+  - Heart
+  - HeadHitbox
   layers:
   - Default
   - TransparentFX

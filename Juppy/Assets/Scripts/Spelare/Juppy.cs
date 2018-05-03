@@ -33,7 +33,12 @@ public class Juppy : MonoBehaviour {
     [SerializeField]
     float sessionHighestXCoordinate = 0;
 
+    int moodkillersDefeated = 0;
+
     Gyroscope gyro;
+
+
+    public float MoodKillersDefeated{ get{return moodkillersDefeated;} }
 
     public float SessionHeightScore{ get{return sessionHeightScore;}set{sessionHeightScore = value;} }
 
@@ -59,6 +64,10 @@ public class Juppy : MonoBehaviour {
 	if(sessionHeightScore < thisTransform.position.y)
 	{
 	    sessionHeightScore = thisTransform.position.y;
+	}
+	else if(thisTransform.position.y < sessionHeightScore - 2000)
+	{
+	    Kill();
 	}
 
 	if(sessionHighestXCoordinate < thisTransform.position.x)
@@ -94,19 +103,6 @@ public class Juppy : MonoBehaviour {
 	}
    }
 
-    void OnCollisionEnter2D(Collision2D collision){
-        MoodKiller md = collision.collider.GetComponent<MoodKiller>();
-        if(md != null){
-            foreach(ContactPoint2D point in collision.contacts){
-                if(point.normal.y >= 0.9f){
-                    md.kill();
-                    hearts =+ 5;
-                } else {
-                    hearts--;
-                }
-            }
-        }
-    }
 
     void OnTriggerEnter2D(Collider2D other) {
 	if(thisRigidbody2D.velocity.y < 0){
@@ -121,24 +117,54 @@ public class Juppy : MonoBehaviour {
 	    }
 	}
 	if(other.tag == "MoodKiller"){
-	    Kill();
+	    if(hearts < 1){
+		ReturnToMenu();
+	    }
+	    else{
+		hearts--;
+	    }
+
 	    other.GetComponent<MoodKiller>().kill();
+	    moodkillersDefeated ++;
 	}
 
-	if(other.name == "HeadHitbox"){
+	if(other.tag == "HeadHitbox"){
 	    other.gameObject.transform.parent.GetComponent<MoodKiller>().kill();
+	    moodkillersDefeated ++;
+	    
+            // hoppa
+	    thisRigidbody2D.velocity = new Vector2(thisRigidbody2D.velocity.x, 0);
+	    thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
 	}
+
+	if(other.tag == "Heart"){
+	    Heart heart = other.GetComponent<Heart>();
+	    heart.Kill();
+	    hearts++;
+	}
+
     }
 
     public void Kill(){
-	if(hearts < 1){
-	    ReturnToMenu();
-	}
-	else{
-	    hearts--;
-	}
+	UpdateHighscores();
+	ReturnToMenu();
+
     }
 
+    void UpdateHighscores(){
+	if(hearts > Highscores.HighestHeartCount)
+	{
+		Highscores.HighestHeartCount = hearts;
+	}
+	    	if(sessionHeightScore > Highscores.HighestHeight)
+	{
+		Highscores.HighestHeight = sessionHeightScore;
+	}
+	    	if(moodkillersDefeated > Highscores.HighestMoodkillerCount)
+	{
+		Highscores.HighestMoodkillerCount = moodkillersDefeated;
+	}
+    }
 
     public void ReturnToMenu()
     {

@@ -18,7 +18,7 @@ public class PlatformGenerator : MonoBehaviour {
     float platformGenerationOffset = 1500;
 
     [SerializeField]
-    int yAxisPlatformsMaxDeltaHeight = 300;
+    int yAxisPlatformsMaxDeltaHeight = 200;
 
 
     [SerializeField]
@@ -41,7 +41,7 @@ public class PlatformGenerator : MonoBehaviour {
     Juppy juppy;
 
 
-    int moodKillerHeight = 100;
+    int moodKillerHeight = -100;
 
     System.Random rnd = new System.Random();
 
@@ -63,7 +63,7 @@ public class PlatformGenerator : MonoBehaviour {
 
     void AttemptGeneratePlatformHorizontally () {
 	// If last generated platform is left of right side of screen
-	if(lastGeneratedObjectX + objectPrimaryDistanceDelta < juppy.SessionHighestXCoordinate + platformGenerationOffset){
+	if(lastGeneratedObjectX + objectPrimaryDistanceDelta < juppy.SessionHeightScore + platformGenerationOffset){
 
 	    float newPlatformX = lastGeneratedObjectX + objectPrimaryDistanceDelta;
 
@@ -130,7 +130,7 @@ public class PlatformGenerator : MonoBehaviour {
 	    }
 
 	    if(livingMoodKiller == null){
-		juppy.SessionHeightScore = juppy.gameObject.GetComponent<Transform>().position.y;
+		Instantiate(platformToCreate, new Vector2(lastGeneratedObjectX, juppy.SessionHeightScore), platformToCreate.transform.rotation);
 		generateHorizontally = !generateHorizontally;
 		changePlatformGenerationAxisTimer = 0;
 		livingMoodKillerCreated = false;

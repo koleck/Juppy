@@ -17,6 +17,6 @@ public class MoodKillerCounter : MonoBehaviour
 
     void Update()
     {
-        text.text = juppy.MoodKiller.ToString();
+        text.text = juppy.MoodKillersDefeated.ToString();
     }
 }
