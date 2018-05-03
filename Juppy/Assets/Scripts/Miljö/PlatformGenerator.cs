@@ -63,7 +63,7 @@ public class PlatformGenerator : MonoBehaviour {
 
     void AttemptGeneratePlatformHorizontally () {
 	// If last generated platform is left of right side of screen
-	if(lastGeneratedObjectX + objectPrimaryDistanceDelta < lastGeneratedObjectX + platformGenerationOffset){
+	if(lastGeneratedObjectX + objectPrimaryDistanceDelta < juppy.SessionHeightScore + platformGenerationOffset){
 
 	    float newPlatformX = lastGeneratedObjectX + objectPrimaryDistanceDelta;
 
