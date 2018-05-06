@@ -24,8 +24,12 @@ public class Platform : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 	if(thisTransform.position.y < juppy.SessionHeightScore - deconstructDistance){
-	    Destroy(this.gameObject);
+	    Kill();
 	}
+    }
+
+    public void Kill(){
+	Destroy(this.gameObject);
     }
 
 }
