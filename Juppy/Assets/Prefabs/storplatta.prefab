@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114054095637138224}
   m_Layer: 0
   m_Name: storplatta
-  m_TagString: Platta
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
