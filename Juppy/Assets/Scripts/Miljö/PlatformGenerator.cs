@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlatformGenerator : MonoBehaviour
@@ -37,6 +38,7 @@ public class PlatformGenerator : MonoBehaviour
 
     Juppy juppy;
 
+    Transform juppyTransform;
 
 
     System.Random rnd = new System.Random();
@@ -52,6 +54,7 @@ public class PlatformGenerator : MonoBehaviour
     {
 	GameObject juppyObjekt = GameObject.FindGameObjectsWithTag("Juppy")[0];
 	juppy = juppyObjekt.GetComponent<Juppy>();
+	juppyTransform = juppy.GetComponent<Transform>();
     }
 
     GameObject GetRandomPlatform()
@@ -62,13 +65,13 @@ public class PlatformGenerator : MonoBehaviour
     void AttemptGeneratePlatformHorizontally()
     {
 	// If last generated platform is left of right side of screen
-	if (lastGeneratedObjectX + platformMaxWidthDelta < juppy.SessionHeightScore + startGenerationAt)
+	if (lastGeneratedObjectX + platformMaxWidthDelta < juppyTransform.position.x + startGenerationAt)
 	{
-	    float newPlatformX = lastGeneratedObjectX + platformMaxHeightDelta;
+	    float newPlatformX = rnd.Next((int)lastGeneratedObjectX + platformMaxWidthDelta - 400,(int)lastGeneratedObjectX + platformMaxWidthDelta);
 
 	    float newPlatformY;
 
-	    newPlatformY = rnd.Next((int)lastGeneratedObjectY - platformMaxWidthDelta,(int)lastGeneratedObjectY + platformMaxWidthDelta);
+	    newPlatformY = rnd.Next((int)lastGeneratedObjectY - platformMaxHeightDelta ,(int)lastGeneratedObjectY + platformMaxHeightDelta);
 
 	    lastGeneratedObjectX = newPlatformX;
 	    lastGeneratedObjectY = newPlatformY;
@@ -121,16 +124,25 @@ public class PlatformGenerator : MonoBehaviour
     {
 	lastGeneratedObjectX = rnd.Next((int)lastGeneratedObjectX - platformMaxWidthDelta, (int)lastGeneratedObjectX + platformMaxWidthDelta);
 
-	return Instantiate(moodKiller, new Vector2(lastGeneratedObjectX, lastGeneratedObjectY + platformMaxHeightDelta - 30), moodKiller.transform.rotation);
+	return Instantiate(moodKiller, new Vector2(lastGeneratedObjectX, lastGeneratedObjectY + platformMaxHeightDelta), moodKiller.transform.rotation);
     }
 
     void ClearAllPlatforms()
     {
-
 	GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
 	foreach(GameObject platform in platforms){
-	    platform.GetComponent<Platform>().Kill();
+	    Transform platformParent = platform.transform.parent;
+
+	    StartCoroutine(MakePlatformSolid(platformParent, 0));
 	}
+    }
+
+    IEnumerator MakePlatformSolid(Transform platform, int waitTime){
+	yield return new WaitForSeconds(waitTime);
+
+	platform.GetComponent<CapsuleCollider2D>().isTrigger = false;
+
+	platform.GetComponent<Rigidbody2D>().gravityScale = 100;
     }
 
     void Update()
@@ -145,15 +157,13 @@ public class PlatformGenerator : MonoBehaviour
 
 	    if (livingMoodKiller == null)
 	    {
+		livingMoodKillerCreated = false;
 		ClearAllPlatforms();
 		// Create platform
 		//GameObject platform = GetRandomPlatform();
 		//Instantiate(platform, new Vector2(lastGeneratedObjectX, juppy.SessionHeightScore - 100), platform.transform.rotation);
-
-
 		generateHorizontally = !generateHorizontally;
 		changePlatformGenerationAxisTimer = 0;
-		livingMoodKillerCreated = false;
 	    }
 	}
 	else

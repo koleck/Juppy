@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Juppy : MonoBehaviour
@@ -103,6 +104,23 @@ public class Juppy : MonoBehaviour
         }
     }
 
+    void Jump(){
+
+	// Reset momentum
+	thisRigidbody2D.velocity = new Vector2(thisRigidbody2D.velocity.x, 0);
+
+	// Make player jump
+	thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
+
+    }
+
+    IEnumerator MakePlatformSolid(Transform platform, int waitTime){
+	yield return new WaitForSeconds(waitTime);
+
+	platform.GetComponent<CapsuleCollider2D>().isTrigger = false;
+
+	platform.GetComponent<Rigidbody2D>().gravityScale = 100;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -111,12 +129,13 @@ public class Juppy : MonoBehaviour
 
             if (other.tag == "Platform")
             {
-                // Reset momentum
-                thisRigidbody2D.velocity = new Vector2(thisRigidbody2D.velocity.x, 0);
+		Jump();
 
-                // Make player jump
-                thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
-            }
+		Transform platformParent = other.transform.parent;
+
+		
+		StartCoroutine(MakePlatformSolid(platformParent, 1));
+	    }
         }
         if (other.tag == "MoodKiller")
         {
@@ -127,7 +146,9 @@ public class Juppy : MonoBehaviour
             else
             {
                 hearts--;
-            }
+
+		Jump();
+	    }
 
             other.GetComponent<MoodKiller>().kill();
             moodkillersDefeated++;
@@ -138,9 +159,7 @@ public class Juppy : MonoBehaviour
             other.gameObject.transform.parent.GetComponent<MoodKiller>().kill();
             moodkillersDefeated++;
 
-            // hoppa
-            thisRigidbody2D.velocity = new Vector2(thisRigidbody2D.velocity.x, 0);
-            thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
+	    Jump();
         }
 
         if (other.tag == "Heart")
