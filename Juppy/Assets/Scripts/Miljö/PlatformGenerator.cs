@@ -20,7 +20,7 @@ public class PlatformGenerator : MonoBehaviour
     float startGenerationAt = 1500;
 
     [SerializeField]
-    GameObject[] platforms = new GameObject[2];
+    GameObject[] platforms = new GameObject[4];
 
     [SerializeField]
     GameObject heart;

@@ -117,7 +117,7 @@ public class Juppy : MonoBehaviour
     IEnumerator MakePlatformSolid(Transform platform, int waitTime){
 	yield return new WaitForSeconds(waitTime);
 
-	platform.GetComponent<CapsuleCollider2D>().isTrigger = false;
+	platform.GetComponent<BoxCollider2D>().isTrigger = false;
 
 	platform.GetComponent<Rigidbody2D>().gravityScale = 100;
     }
@@ -134,7 +134,7 @@ public class Juppy : MonoBehaviour
 		Transform platformParent = other.transform.parent;
 
 		
-		StartCoroutine(MakePlatformSolid(platformParent, 1));
+		StartCoroutine(MakePlatformSolid(platformParent, 0));
 	    }
         }
         if (other.tag == "MoodKiller")
@@ -198,6 +198,4 @@ public class Juppy : MonoBehaviour
     {
         SceneManager.LoadScene("main");
     }
-
-
 }

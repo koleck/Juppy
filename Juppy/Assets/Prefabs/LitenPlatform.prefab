@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4051413203376460}
   - component: {fileID: 50466046810233856}
-  - component: {fileID: 70657798258747626}
+  - component: {fileID: 61547041291384160}
   m_Layer: 0
   m_Name: LitenPlatform
   m_TagString: Untagged
@@ -53,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1279977898830164}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.7597313, y: -472.16467, z: 0}
+  m_LocalPosition: {x: -656.57434, y: -379.24747, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4152142903316112}
@@ -105,21 +105,21 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -9.11, y: 107.6}
+  m_Offset: {x: 0, y: 64.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 500, y: 500}
+    oldSize: {x: 539, y: 138}
     newSize: {x: 5, y: 5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 298.3, y: 27.7}
+  m_Size: {x: 512.1, y: 32.9}
   m_EdgeRadius: 0
---- !u!70 &70657798258747626
-CapsuleCollider2D:
+--- !u!61 &61547041291384160
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -130,9 +130,19 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -9.9, y: 40.95}
-  m_Size: {x: 294.1, y: 101.5}
-  m_Direction: 1
+  m_Offset: {x: 0, y: -2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 501.3, y: 127.1}
+  m_EdgeRadius: 0
 --- !u!114 &114207106690769334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,7 +190,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3ee27f2465907464ebc5595d88efaa0a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4339623, g: 0.32408783, b: 0.22312212, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
