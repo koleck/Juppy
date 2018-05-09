@@ -4,12 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Platta
   - Juppy
   - Meny
   - MoodKiller
   - Heart
   - HeadHitbox
-  - Platform
   layers:
   - Default
   - TransparentFX
