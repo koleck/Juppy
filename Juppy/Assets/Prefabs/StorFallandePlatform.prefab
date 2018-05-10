@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 50012325017703324}
   - component: {fileID: 61949139920317990}
   m_Layer: 0
-  m_Name: StorPlatform
+  m_Name: StorFallandePlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

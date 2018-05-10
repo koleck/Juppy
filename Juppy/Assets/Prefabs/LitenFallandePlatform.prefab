@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 50466046810233856}
   - component: {fileID: 61547041291384160}
   m_Layer: 0
-  m_Name: LitenPlatform
+  m_Name: LitenFallandePlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
