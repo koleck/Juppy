@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114007476759654570}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Platform
+  m_TagString: FallingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,7 +84,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 30
+  m_Mass: 400
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

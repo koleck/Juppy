@@ -34,9 +34,6 @@ public class Juppy : MonoBehaviour
 
     int moodkillersDefeated = 0;
 
-    Gyroscope gyro;
-
-
     public float MoodKillersDefeated { get { return moodkillersDefeated; } }
 
     public float SessionHeightScore { get { return sessionHeightScore; } set { sessionHeightScore = value; } }
@@ -50,49 +47,53 @@ public class Juppy : MonoBehaviour
     {
         thisRigidbody2D = this.GetComponent<Rigidbody2D>();
         thisTransform = this.GetComponent<Transform>();
-
-        if (SystemInfo.supportsGyroscope)
-        {
-            gyro = Input.gyro;
-            gyro.enabled = true;
-        }
     }
 
     void Update()
     {
-        if (sessionHeightScore < thisTransform.position.y)
-        {
-            sessionHeightScore = thisTransform.position.y;
-        }
-        else if (thisTransform.position.y < sessionHeightScore - 2000)
-        {
-            Kill();
-        }
+	if (sessionHeightScore < thisTransform.position.y)
+	{
+	    sessionHeightScore = thisTransform.position.y;
+	}
+	else if (thisTransform.position.y < sessionHeightScore - 2000)
+	{
+	    Kill();
+	}
 
 
-        if (Input.GetKeyDown("z"))
-        {
-            ShootProjectile();
-        }
+	if (Input.GetKeyDown("z"))
+	{
+	    ShootProjectile();
+	}
 
-        if (gyro != null)
-        {
-            thisRigidbody2D.velocity = new Vector2(-Input.gyro.rotationRateUnbiased.y, thisRigidbody2D.velocity.y);
-        }
+	if(-Input.acceleration.z != 0)
+	{
+	    float gyroZ = -Input.acceleration.z;
+
+	    if(gyroZ > horizontalMovementSpeed){
+		gyroZ = horizontalMovementSpeed;
+	    }
+	    else if(gyroZ < -horizontalMovementSpeed)
+	    {
+		gyroZ = -horizontalMovementSpeed;
+	    }
+
+	    thisRigidbody2D.velocity = new Vector2(gyroZ, thisRigidbody2D.velocity.y);
+	}
 
 
-        if (Input.GetKey("left"))
-        {
-            thisRigidbody2D.velocity = new Vector2(-horizontalMovementSpeed, thisRigidbody2D.velocity.y);
-        }
-        else if (Input.GetKey("right"))
-        {
-            thisRigidbody2D.velocity = new Vector2(horizontalMovementSpeed, thisRigidbody2D.velocity.y);
-        }
-        else
-        {
-            thisRigidbody2D.velocity = new Vector2(0, thisRigidbody2D.velocity.y);
-        }
+	if (Input.GetKey("left"))
+	{
+	    thisRigidbody2D.velocity = new Vector2(-horizontalMovementSpeed, thisRigidbody2D.velocity.y);
+	}
+	else if (Input.GetKey("right"))
+	{
+	    thisRigidbody2D.velocity = new Vector2(horizontalMovementSpeed, thisRigidbody2D.velocity.y);
+	}
+	else
+	{
+	    thisRigidbody2D.velocity = new Vector2(0, thisRigidbody2D.velocity.y);
+	}
     }
 
     public void ShootProjectile()
@@ -114,9 +115,7 @@ public class Juppy : MonoBehaviour
 
     }
 
-    IEnumerator MakePlatformSolid(Transform platform, int waitTime){
-	yield return new WaitForSeconds(waitTime);
-
+    void MakePlatformSolid(Transform platform){
 	platform.GetComponent<BoxCollider2D>().isTrigger = false;
 
 	platform.GetComponent<Rigidbody2D>().gravityScale = 100;
@@ -130,44 +129,50 @@ public class Juppy : MonoBehaviour
             if (other.tag == "Platform")
             {
 		Jump();
+	    }
+
+	    if (other.tag == "FallingPlatform")
+            {
+		Jump();
 
 		Transform platformParent = other.transform.parent;
 
 		
-		StartCoroutine(MakePlatformSolid(platformParent, 0));
-	    }
-        }
-        if (other.tag == "MoodKiller")
-        {
-            if (hearts < 1)
-            {
-                ReturnToMenu();
-            }
-            else
-            {
-                hearts--;
-
-		Jump();
+		MakePlatformSolid (platformParent);
 	    }
 
-            other.GetComponent<MoodKiller>().kill();
-            moodkillersDefeated++;
-        }
-
-        if (other.tag == "HeadHitbox")
-        {
-            other.gameObject.transform.parent.GetComponent<MoodKiller>().kill();
-            moodkillersDefeated++;
+	}
+    if (other.tag == "MoodKiller")
+    {
+	if (hearts < 1)
+	{
+	    ReturnToMenu();
+	}
+	else
+	{
+	    hearts--;
 
 	    Jump();
-        }
+	}
 
-        if (other.tag == "Heart")
-        {
-            Heart heart = other.GetComponent<Heart>();
-            heart.Kill();
-            hearts++;
-        }
+	other.GetComponent<MoodKiller>().kill();
+	moodkillersDefeated++;
+    }
+
+    if (other.tag == "HeadHitbox")
+    {
+	other.gameObject.transform.parent.GetComponent<MoodKiller>().kill();
+	moodkillersDefeated++;
+
+	Jump();
+    }
+
+    if (other.tag == "Heart")
+    {
+	Heart heart = other.GetComponent<Heart>();
+	heart.Kill();
+	hearts++;
+    }
 
     }
 

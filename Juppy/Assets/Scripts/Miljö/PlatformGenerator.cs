@@ -129,18 +129,22 @@ public class PlatformGenerator : MonoBehaviour
 
     void ClearAllPlatforms()
     {
-	GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
-	foreach(GameObject platform in platforms){
+	GameObject[] fallingPlatforms = GameObject.FindGameObjectsWithTag("FallingPlatform");
+	foreach(GameObject platform in fallingPlatforms){
 	    Transform platformParent = platform.transform.parent;
 
-	    StartCoroutine(MakePlatformSolid(platformParent, 0));
+	    MakePlatformSolid(platformParent);
 	}
-    }
 
-    IEnumerator MakePlatformSolid(Transform platform, int waitTime){
-	yield return new WaitForSeconds(waitTime);
+	//	GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
+	//	foreach(GameObject platform in platforms){
+	//	    platform.GetComponent<Platform>().Kill();
+	    //	}
 
-	platform.GetComponent<CapsuleCollider2D>().isTrigger = false;
+	}
+
+    void MakePlatformSolid(Transform platform){
+	platform.GetComponent<BoxCollider2D>().isTrigger = false;
 
 	platform.GetComponent<Rigidbody2D>().gravityScale = 100;
     }
