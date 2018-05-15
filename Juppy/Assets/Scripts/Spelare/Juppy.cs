@@ -32,7 +32,13 @@ public class Juppy : MonoBehaviour
     [SerializeField]
     GameObject heartProjectile;
 
+    SpriteRenderer backgroundSpriteRenderer;
+
+    SpriteRenderer thisSpriteRenderer;
+
     int moodkillersDefeated = 0;
+
+    CameraController camera;
 
     public float MoodKillersDefeated { get { return moodkillersDefeated; } }
 
@@ -45,55 +51,60 @@ public class Juppy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        thisRigidbody2D = this.GetComponent<Rigidbody2D>();
+        camera = GameObject.Find("Main Camera").GetComponent<CameraController>();
+
+	thisRigidbody2D = this.GetComponent<Rigidbody2D>();
         thisTransform = this.GetComponent<Transform>();
+
+        thisSpriteRenderer = this.GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-	if (sessionHeightScore < thisTransform.position.y)
-	{
-	    sessionHeightScore = thisTransform.position.y;
-	}
-	else if (thisTransform.position.y < sessionHeightScore - 2000)
-	{
-	    Kill();
-	}
+        if (sessionHeightScore < thisTransform.position.y)
+        {
+            sessionHeightScore = thisTransform.position.y;
+        }
+        else if (thisTransform.position.y < sessionHeightScore - 2000)
+        {
+            Kill();
+        }
 
 
-	if (Input.GetKeyDown("z"))
-	{
-	    ShootProjectile();
-	}
+        if (Input.GetKeyDown("z"))
+        {
+            ShootProjectile();
+        }
 
-	if(-Input.acceleration.z != 0)
-	{
-	    float gyroZ = -Input.acceleration.z;
+        if (-Input.acceleration.z != 0)
+        {
+            float gyroZ = -Input.acceleration.z;
 
-	    if(gyroZ > horizontalMovementSpeed){
-		gyroZ = horizontalMovementSpeed;
-	    }
-	    else if(gyroZ < -horizontalMovementSpeed)
-	    {
-		gyroZ = -horizontalMovementSpeed;
-	    }
+            if (gyroZ > horizontalMovementSpeed)
+            {
+                gyroZ = horizontalMovementSpeed;
+            }
+            else if (gyroZ < -horizontalMovementSpeed)
+            {
+                gyroZ = -horizontalMovementSpeed;
+            }
 
-	    thisRigidbody2D.velocity = new Vector2(gyroZ, thisRigidbody2D.velocity.y);
-	}
+            thisRigidbody2D.velocity = new Vector2(gyroZ, thisRigidbody2D.velocity.y);
+        }
 
 
-	if (Input.GetKey("left"))
-	{
-	    thisRigidbody2D.velocity = new Vector2(-horizontalMovementSpeed, thisRigidbody2D.velocity.y);
-	}
-	else if (Input.GetKey("right"))
-	{
-	    thisRigidbody2D.velocity = new Vector2(horizontalMovementSpeed, thisRigidbody2D.velocity.y);
-	}
-	else
-	{
-	    thisRigidbody2D.velocity = new Vector2(0, thisRigidbody2D.velocity.y);
-	}
+        if (Input.GetKey("left"))
+        {
+            thisRigidbody2D.velocity = new Vector2(-horizontalMovementSpeed, thisRigidbody2D.velocity.y);
+        }
+        else if (Input.GetKey("right"))
+        {
+            thisRigidbody2D.velocity = new Vector2(horizontalMovementSpeed, thisRigidbody2D.velocity.y);
+        }
+        else
+        {
+            thisRigidbody2D.velocity = new Vector2(0, thisRigidbody2D.velocity.y);
+        }
     }
 
     public void ShootProjectile()
@@ -105,20 +116,24 @@ public class Juppy : MonoBehaviour
         }
     }
 
-    void Jump(){
+    void Jump()
+    {
 
-	// Reset momentum
-	thisRigidbody2D.velocity = new Vector2(thisRigidbody2D.velocity.x, 0);
+        // Reset momentum
+        thisRigidbody2D.velocity = new Vector2(thisRigidbody2D.velocity.x, 0);
 
-	// Make player jump
-	thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
+        // Make player jump
+        thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
+
+	camera.ShakeTime += 0.2f;
 
     }
 
-    void MakePlatformSolid(Transform platform){
-	platform.GetComponent<BoxCollider2D>().isTrigger = false;
+    void MakePlatformSolid(Transform platform)
+    {
+        platform.GetComponent<BoxCollider2D>().isTrigger = false;
 
-	platform.GetComponent<Rigidbody2D>().gravityScale = 100;
+        platform.GetComponent<Rigidbody2D>().gravityScale = 100;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -128,51 +143,65 @@ public class Juppy : MonoBehaviour
 
             if (other.tag == "Platform")
             {
-		Jump();
-	    }
+                Jump();
 
-	    if (other.tag == "FallingPlatform")
+                other.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            }
+
+            if (other.tag == "FallingPlatform")
             {
-		Jump();
+                Jump();
 
-		Transform platformParent = other.transform.parent;
+                Transform platformParent = other.transform.parent;
 
-		
-		MakePlatformSolid (platformParent);
-	    }
+                MakePlatformSolid(platformParent);
 
-	}
-    if (other.tag == "MoodKiller")
-    {
-	if (hearts < 1)
-	{
-	    ReturnToMenu();
-	}
-	else
-	{
-	    hearts--;
+                other.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            }
 
-	    Jump();
-	}
+        }
+        if (other.tag == "MoodKiller")
+        {
 
-	other.GetComponent<MoodKiller>().kill();
-	moodkillersDefeated++;
-    }
+            if (hearts < 1)
+            {
+                ReturnToMenu();
+            }
+            else
+            {
+                hearts--;
 
-    if (other.tag == "HeadHitbox")
-    {
-	other.gameObject.transform.parent.GetComponent<MoodKiller>().kill();
-	moodkillersDefeated++;
+                Jump();
 
-	Jump();
-    }
+                other.GetComponent<SpriteRenderer>().color = Color.red;
+            }
 
-    if (other.tag == "Heart")
-    {
-	Heart heart = other.GetComponent<Heart>();
-	heart.Kill();
-	hearts++;
-    }
+            other.GetComponent<MoodKiller>().kill();
+            moodkillersDefeated++;
+        }
+
+        if (other.tag == "HeadHitbox")
+        {
+
+            Transform moodkillerTransform = other.gameObject.transform.parent;
+
+            moodkillerTransform.GetComponent<SpriteRenderer>().color = Color.red;
+
+            moodkillerTransform.GetComponent<MoodKiller>().kill();
+
+            moodkillersDefeated++;
+
+            Jump();
+        }
+
+        if (other.tag == "Heart")
+        {
+            Heart heart = other.GetComponent<Heart>();
+            heart.Kill();
+            hearts++;
+
+            StartCoroutine(BecomeHappier(1.0f));
+        }
 
     }
 
@@ -180,6 +209,16 @@ public class Juppy : MonoBehaviour
     {
         UpdateHighscores();
         ReturnToMenu();
+
+    }
+
+    private IEnumerator BecomeHappier(float time)
+    {
+        thisSpriteRenderer.color = Color.green;
+
+        yield return new WaitForSeconds(time);
+
+        thisSpriteRenderer.color = Color.white;
 
     }
 

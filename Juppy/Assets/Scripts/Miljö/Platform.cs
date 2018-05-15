@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Platform : MonoBehaviour {
@@ -29,7 +30,12 @@ public class Platform : MonoBehaviour {
     }
 
     public void Kill(){
-	Destroy(this.gameObject);
+	if( thisTransform.parent == null){
+	    Destroy(this.gameObject);
+	}
+	else{
+	    Destroy(thisTransform.parent.gameObject);
+	    Destroy(this.gameObject);
+	}
     }
-
 }

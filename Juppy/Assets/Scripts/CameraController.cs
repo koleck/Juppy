@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
@@ -6,6 +7,10 @@ public class CameraController : MonoBehaviour {
     Transform juppyTransform;
 
     Transform thisTransform;
+
+    float shakeAmount = 30;
+
+    public float ShakeTime{get;set;}
 
     [SerializeField]
     private bool scrollVertically;
@@ -23,6 +28,19 @@ public class CameraController : MonoBehaviour {
 
 
     void LateUpdate() {
-	thisTransform.position = new Vector3(juppyTransform.position.x, juppyTransform.position.y, thisTransform.position.z);
+	if(ShakeTime > 0){
+
+	    ShakeScreen();
+
+	    ShakeTime -= Time.deltaTime;
+	}
+	else{
+	    thisTransform.position = new Vector3(juppyTransform.position.x, juppyTransform.position.y, thisTransform.position.z);
+	}
+    }
+
+    private void ShakeScreen(){
+	Debug.Log(Random.value);
+	thisTransform.position = new Vector3(juppyTransform.position.x + Random.value * shakeAmount, juppyTransform.position.y + Random.value * shakeAmount, -10);
     }
 }
