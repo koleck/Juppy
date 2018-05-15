@@ -125,8 +125,11 @@ public class Juppy : MonoBehaviour
         // Make player jump
         thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
 
-	camera.ShakeTime += 0.2f;
+	ShakeScreen();
+    }
 
+    void ShakeScreen(){
+	camera.ShakeTime += 0.2f;
     }
 
     void MakePlatformSolid(Transform platform)
@@ -200,7 +203,9 @@ public class Juppy : MonoBehaviour
             heart.Kill();
             hearts++;
 
-            StartCoroutine(BecomeHappier(1.0f));
+	    ShakeScreen();
+
+	    StartCoroutine(BecomeHappier(1.0f));
         }
 
     }
