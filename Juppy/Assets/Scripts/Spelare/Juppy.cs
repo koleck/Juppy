@@ -13,6 +13,16 @@ public class Juppy : MonoBehaviour
 
     Platform juppy;
 
+    // Used by on-screen buttons
+    [SerializeField]
+    public bool uiMoveLeft = false;
+    [SerializeField]
+    public bool uiMoveRight = false;
+
+    public bool UIMoveLeft { get { return uiMoveLeft; } set { uiMoveLeft= value; } }
+
+    public bool UIMoveRight { get { return uiMoveRight; } set { uiMoveRight = value; } }
+
 
     [SerializeField]
     int hearts;
@@ -48,6 +58,7 @@ public class Juppy : MonoBehaviour
 
     public int MoodKiller { get { return moodkiller; } set { moodkiller = value; } }
 
+
     // Use this for initialization
     void Start()
     {
@@ -76,54 +87,37 @@ public class Juppy : MonoBehaviour
             ShootProjectile();
         }
 
-        if (-Input.acceleration.z != 0)
-        {
-            float gyroZ = -Input.acceleration.z;
-
-            if (gyroZ > horizontalMovementSpeed)
-            {
-                gyroZ = horizontalMovementSpeed;
-            }
-            else if (gyroZ < -horizontalMovementSpeed)
-            {
-                gyroZ = -horizontalMovementSpeed;
-            }
-
-            thisRigidbody2D.velocity = new Vector2(gyroZ, thisRigidbody2D.velocity.y);
-        }
-
-
-        if (Input.GetKey("left"))
-        {
-            thisRigidbody2D.velocity = new Vector2(-horizontalMovementSpeed, thisRigidbody2D.velocity.y);
-        }
-        else if (Input.GetKey("right"))
-        {
-            thisRigidbody2D.velocity = new Vector2(horizontalMovementSpeed, thisRigidbody2D.velocity.y);
-        }
-        else
-        {
-            thisRigidbody2D.velocity = new Vector2(0, thisRigidbody2D.velocity.y);
-        }
+        if (Input.GetKey("left") || uiMoveLeft)
+	{
+	    thisRigidbody2D.velocity = new Vector2(-horizontalMovementSpeed, thisRigidbody2D.velocity.y);
+	}
+	else if (Input.GetKey("right") || uiMoveRight)
+	{
+	    thisRigidbody2D.velocity = new Vector2(horizontalMovementSpeed, thisRigidbody2D.velocity.y);
+	}
+	else
+	{
+	    thisRigidbody2D.velocity = new Vector2(0, thisRigidbody2D.velocity.y);
+	}
     }
 
     public void ShootProjectile()
     {
-        if (hearts > 0)
-        {
-            Instantiate(heartProjectile, thisTransform.position, thisTransform.rotation);
-            hearts--;
-        }
+	if (hearts > 0)
+	{
+	    Instantiate(heartProjectile, thisTransform.position, thisTransform.rotation);
+	    hearts--;
+	}
     }
 
     void Jump()
     {
 
-        // Reset momentum
-        thisRigidbody2D.velocity = new Vector2(thisRigidbody2D.velocity.x, 0);
+	// Reset momentum
+	thisRigidbody2D.velocity = new Vector2(thisRigidbody2D.velocity.x, 0);
 
-        // Make player jump
-        thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
+	// Make player jump
+	thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
 
 	ShakeScreen();
     }
@@ -134,117 +128,117 @@ public class Juppy : MonoBehaviour
 
     void MakePlatformSolid(Transform platform)
     {
-        platform.GetComponent<BoxCollider2D>().isTrigger = false;
+	platform.GetComponent<BoxCollider2D>().isTrigger = false;
 
-        platform.GetComponent<Rigidbody2D>().gravityScale = 100;
+	platform.GetComponent<Rigidbody2D>().gravityScale = 100;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (thisRigidbody2D.velocity.y < 0)
-        {
+	if (thisRigidbody2D.velocity.y < 0)
+	{
 
-            if (other.tag == "Platform")
-            {
-                Jump();
+	    if (other.tag == "Platform")
+	    {
+		Jump();
 
-                other.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
-            }
+		other.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+	    }
 
-            if (other.tag == "FallingPlatform")
-            {
-                Jump();
+	    if (other.tag == "FallingPlatform")
+	    {
+		Jump();
 
-                Transform platformParent = other.transform.parent;
+		Transform platformParent = other.transform.parent;
 
-                MakePlatformSolid(platformParent);
+		MakePlatformSolid(platformParent);
 
-                other.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
-            }
+		other.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+	    }
 
-        }
-        if (other.tag == "MoodKiller")
-        {
+	}
+	if (other.tag == "MoodKiller")
+	{
 
-            if (hearts < 1)
-            {
-                ReturnToMenu();
-            }
-            else
-            {
-                hearts--;
+	    if (hearts < 1)
+	    {
+		ReturnToMenu();
+	    }
+	    else
+	    {
+		hearts--;
 
-                Jump();
+		Jump();
 
-                other.GetComponent<SpriteRenderer>().color = Color.red;
-            }
+		other.GetComponent<SpriteRenderer>().color = Color.red;
+	    }
 
-            other.GetComponent<MoodKiller>().kill();
-            moodkillersDefeated++;
-        }
+	    other.GetComponent<MoodKiller>().kill();
+	    moodkillersDefeated++;
+	}
 
-        if (other.tag == "HeadHitbox")
-        {
+	if (other.tag == "HeadHitbox")
+	{
 
-            Transform moodkillerTransform = other.gameObject.transform.parent;
+	    Transform moodkillerTransform = other.gameObject.transform.parent;
 
-            moodkillerTransform.GetComponent<SpriteRenderer>().color = Color.red;
+	    moodkillerTransform.GetComponent<SpriteRenderer>().color = Color.red;
 
-            moodkillerTransform.GetComponent<MoodKiller>().kill();
+	    moodkillerTransform.GetComponent<MoodKiller>().kill();
 
-            moodkillersDefeated++;
+	    moodkillersDefeated++;
 
-            Jump();
-        }
+	    Jump();
+	}
 
-        if (other.tag == "Heart")
-        {
-            Heart heart = other.GetComponent<Heart>();
-            heart.Kill();
-            hearts++;
+	if (other.tag == "Heart")
+	{
+	    Heart heart = other.GetComponent<Heart>();
+	    heart.Kill();
+	    hearts++;
 
 	    ShakeScreen();
 
 	    StartCoroutine(BecomeHappier(1.0f));
-        }
+	}
 
     }
 
     public void Kill()
     {
-        UpdateHighscores();
-        ReturnToMenu();
+	UpdateHighscores();
+	ReturnToMenu();
 
     }
 
     private IEnumerator BecomeHappier(float time)
     {
-        thisSpriteRenderer.color = Color.green;
+	thisSpriteRenderer.color = Color.green;
 
-        yield return new WaitForSeconds(time);
+	yield return new WaitForSeconds(time);
 
-        thisSpriteRenderer.color = Color.white;
+	thisSpriteRenderer.color = Color.white;
 
     }
 
     void UpdateHighscores()
     {
-        if (hearts > Highscores.HighestHeartCount)
-        {
-            Highscores.HighestHeartCount = hearts;
-        }
-        if (sessionHeightScore > Highscores.HighestHeight)
-        {
-            Highscores.HighestHeight = (int)sessionHeightScore;
-        }
-        if (moodkillersDefeated > Highscores.HighestMoodkillerCount)
-        {
-            Highscores.HighestMoodkillerCount = moodkillersDefeated;
-        }
+	if (hearts > Highscores.HighestHeartCount)
+	{
+	    Highscores.HighestHeartCount = hearts;
+	}
+	if (sessionHeightScore > Highscores.HighestHeight)
+	{
+	    Highscores.HighestHeight = (int)sessionHeightScore;
+	}
+	if (moodkillersDefeated > Highscores.HighestMoodkillerCount)
+	{
+	    Highscores.HighestMoodkillerCount = moodkillersDefeated;
+	}
     }
 
     public void ReturnToMenu()
     {
-        SceneManager.LoadScene("main");
+	SceneManager.LoadScene("main");
     }
 }
