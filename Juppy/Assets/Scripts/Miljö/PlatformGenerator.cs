@@ -20,7 +20,10 @@ public class PlatformGenerator : MonoBehaviour
     float startGenerationAt = 1500;
 
     [SerializeField]
-    GameObject[] platforms = new GameObject[4];
+    GameObject[] platforms = new GameObject[2];
+
+    [SerializeField]
+    GameObject[] dangerousPlatforms = new GameObject[2];
 
     [SerializeField]
     GameObject heart;
@@ -59,7 +62,25 @@ public class PlatformGenerator : MonoBehaviour
 
     GameObject GetRandomPlatform()
     {
-	return platforms[rnd.Next(0, platforms.Length)];
+	int platformOrFloatingPlatform = 10;
+	if(juppy.SessionHeightScore > 10000 && juppy.SessionHeightScore < 20000) {
+	    platformOrFloatingPlatform = rnd.Next(5, 15);
+	}
+	else if(juppy.SessionHeightScore > 20000 && juppy.SessionHeightScore < 30000){
+	    platformOrFloatingPlatform = rnd.Next(0, 10);
+	}
+	else if(juppy.SessionHeightScore > 30000){
+	    // Only return most dangerous platform
+	    return dangerousPlatforms[rnd.Next(0)];
+	}
+
+	if(platformOrFloatingPlatform >= 10) {
+
+	    return platforms[rnd.Next(0, platforms.Length)];
+	}
+	else{
+	    return dangerousPlatforms[rnd.Next(0, platforms.Length)];
+	}
     }
 
     void AttemptGeneratePlatformHorizontally()
@@ -124,11 +145,12 @@ public class PlatformGenerator : MonoBehaviour
     {
 	lastGeneratedObjectX = rnd.Next((int)lastGeneratedObjectX - platformMaxWidthDelta, (int)lastGeneratedObjectX + platformMaxWidthDelta);
 
-	return Instantiate(moodKiller, new Vector2(lastGeneratedObjectX, lastGeneratedObjectY + platformMaxHeightDelta), moodKiller.transform.rotation);
+	return Instantiate(moodKiller, new Vector2(lastGeneratedObjectX, lastGeneratedObjectY), moodKiller.transform.rotation);
     }
 
     void ClearAllPlatforms()
     {
+	// Make all falling platforms fall
 	GameObject[] fallingPlatforms = GameObject.FindGameObjectsWithTag("FallingPlatform");
 	foreach(GameObject platform in fallingPlatforms){
 	    Transform platformParent = platform.transform.parent;
@@ -136,12 +158,13 @@ public class PlatformGenerator : MonoBehaviour
 	    MakePlatformSolid(platformParent);
 	}
 
-	//	GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
-	//	foreach(GameObject platform in platforms){
-	//	    platform.GetComponent<Platform>().Kill();
-	    //	}
-
+	// Destroy all normal platforms
+	GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
+	foreach(GameObject platform in platforms){
+	    platform.GetComponent<Platform>().Kill();
 	}
+
+    }
 
     void MakePlatformSolid(Transform platform){
 	platform.GetComponent<BoxCollider2D>().isTrigger = false;
