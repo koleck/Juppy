@@ -1205,6 +1205,18 @@ Prefab:
       value: 
       objectReference: {fileID: 1917499188322156, guid: 0a4b6b7d24999479a88a001bd775e485,
         type: 2}
+    - target: {fileID: 114160304408688182, guid: 3f93201b031ec429d92c5381482c68b1,
+        type: 2}
+      propertyPath: moodKiller
+      value: 
+      objectReference: {fileID: 1309253224933858, guid: fd7d9a8f5d33f4277af59a72b48bbd8a,
+        type: 2}
+    - target: {fileID: 114160304408688182, guid: 3f93201b031ec429d92c5381482c68b1,
+        type: 2}
+      propertyPath: angryMoodKiller
+      value: 
+      objectReference: {fileID: 1264952264503130, guid: f01539089836b4ced90feb25eb3c62a3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f93201b031ec429d92c5381482c68b1, type: 2}
   m_IsPrefabParent: 0
