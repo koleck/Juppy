@@ -181,6 +181,8 @@ public class Juppy : MonoBehaviour
             moodkillersDefeated++;
 
             Jump();
+
+	    ShakeScreen();
         }
         else if (other.tag == "AngryMoodKillerHeadHitbox")
         {
@@ -193,6 +195,8 @@ public class Juppy : MonoBehaviour
             moodkillersDefeated++;
 
             Jump();
+
+	    ShakeScreen();
         }
         else if (other.tag == "MoodKiller")
         {
