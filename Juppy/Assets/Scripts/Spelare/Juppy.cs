@@ -118,13 +118,14 @@ public class Juppy : MonoBehaviour
 
         // Make player jump
         thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
-
+      
         ShakeScreen();
     }
 
     void ShakeScreen()
     {
-        camera.ShakeTime += 0.2f;
+        // camera.ShakeTime += 0.2f;x
+
     }
 
     void MakePlatformSolid(Transform platform)
