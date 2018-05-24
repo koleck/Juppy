@@ -32,6 +32,9 @@ public class PlatformGenerator : MonoBehaviour
     GameObject moodKiller;
 
     [SerializeField]
+    GameObject angryMoodKiller;
+
+    [SerializeField]
     GameObject livingMoodKiller;
 
     bool livingMoodKillerCreated = false;
@@ -67,7 +70,7 @@ public class PlatformGenerator : MonoBehaviour
 	    platformOrFloatingPlatform = rnd.Next(5, 15);
 	}
 	else if(juppy.SessionHeightScore > 20000 && juppy.SessionHeightScore < 30000){
-	    platformOrFloatingPlatform = rnd.Next(0, 10);
+	    platformOrFloatingPlatform = rnd.Next(0, 12);
 	}
 	else if(juppy.SessionHeightScore > 30000){
 	    // Only return most dangerous platform
@@ -82,6 +85,17 @@ public class PlatformGenerator : MonoBehaviour
 	    return dangerousPlatforms[rnd.Next(0, platforms.Length)];
 	}
     }
+
+    GameObject GetMoodKiller(){
+	if(juppy.SessionHeightScore > 20000) {
+	    return angryMoodKiller;
+	}
+	else{
+	    return moodKiller;
+	}
+    }
+
+
 
     void AttemptGeneratePlatformHorizontally()
     {
@@ -145,7 +159,7 @@ public class PlatformGenerator : MonoBehaviour
     {
 	lastGeneratedObjectX = rnd.Next((int)lastGeneratedObjectX - platformMaxWidthDelta, (int)lastGeneratedObjectX + platformMaxWidthDelta);
 
-	return Instantiate(moodKiller, new Vector2(lastGeneratedObjectX, lastGeneratedObjectY), moodKiller.transform.rotation);
+	return Instantiate(GetMoodKiller(), new Vector2(lastGeneratedObjectX, lastGeneratedObjectY), moodKiller.transform.rotation);
     }
 
     void ClearAllPlatforms()
@@ -184,6 +198,8 @@ public class PlatformGenerator : MonoBehaviour
 
 	    if (livingMoodKiller == null)
 	    {
+		lastGeneratedObjectX = juppyTransform.position.x;
+		lastGeneratedObjectY = juppyTransform.position.y - 100;
 		livingMoodKillerCreated = false;
 		ClearAllPlatforms();
 		// Create platform

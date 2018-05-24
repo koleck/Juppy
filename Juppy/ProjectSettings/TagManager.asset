@@ -11,6 +11,8 @@ TagManager:
   - HeadHitbox
   - Platform
   - FallingPlatform
+  - AngryMoodKiller
+  - AngryMoodKillerHeadHitbox
   layers:
   - Default
   - TransparentFX
