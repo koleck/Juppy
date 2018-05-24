@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour {
 
     Transform thisTransform;
 
-    float shakeAmount = 30;
+    float shakeAmount = 20;
 
     public float ShakeTime{get;set;}
 

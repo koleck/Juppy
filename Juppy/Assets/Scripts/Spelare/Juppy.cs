@@ -23,7 +23,6 @@ public class Juppy : MonoBehaviour
 
     public bool UIMoveRight { get { return uiMoveRight; } set { uiMoveRight = value; } }
 
-
     [SerializeField]
     int hearts;
 
@@ -72,14 +71,23 @@ public class Juppy : MonoBehaviour
 
     void Update()
     {
-        if (sessionHeightScore < thisTransform.position.y)
-        {
-            sessionHeightScore = thisTransform.position.y;
-        }
-        else if (thisTransform.position.y < sessionHeightScore - 2000)
-        {
-            Kill();
-        }
+	if(thisTransform.localScale.y < 0.3){
+	    thisTransform.localScale += new Vector3(0, 0.02f, 0);
+
+	}
+	else if (thisTransform.localScale.y > 0.3){
+	    thisTransform.localScale = new Vector3(0.3f, 0.3f, 1);
+	}
+
+
+	if (sessionHeightScore < thisTransform.position.y)
+	{
+	    sessionHeightScore = thisTransform.position.y;
+	}
+	else if (thisTransform.position.y < sessionHeightScore - 2000)
+	{
+	    Kill();
+	}
 
 
         if (Input.GetKeyDown("z"))
@@ -112,19 +120,20 @@ public class Juppy : MonoBehaviour
 
     void Jump()
     {
+	// Shrink
+	thisTransform.localScale = new Vector3(0.3f, 0.18f, 1);
 
-        // Reset momentum
+
+	// Reset momentum
         thisRigidbody2D.velocity = new Vector2(thisRigidbody2D.velocity.x, 0);
 
         // Make player jump
         thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
-      
-        ShakeScreen();
     }
 
     void ShakeScreen()
     {
-        // camera.ShakeTime += 0.2f;x
+	camera.ShakeTime += 0.2f;
 
     }
 
@@ -197,7 +206,9 @@ public class Juppy : MonoBehaviour
                 StartCoroutine(BecomeSad(1.0f));
                 hearts--;
 
-                Jump();
+		ShakeScreen();
+
+		Jump();
             }
 
             other.GetComponent<MoodKiller>().kill();
@@ -214,7 +225,9 @@ public class Juppy : MonoBehaviour
                 StartCoroutine(BecomeSad(1.0f));
                 hearts--;
 
-                Jump();
+		ShakeScreen();
+
+		Jump();
             }
 
             other.GetComponent<AngryMoodKiller>().kill();
