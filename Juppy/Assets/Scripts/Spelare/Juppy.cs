@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class Juppy : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class Juppy : MonoBehaviour
     Platform deconstructDistance;
 
     Platform juppy;
+
+
+    private AudioSource src;
+
 
     // Used by on-screen buttons
     [SerializeField]
@@ -61,7 +66,9 @@ public class Juppy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        src = GetComponent<AudioSource>();
         camera = GameObject.Find("Main Camera").GetComponent<CameraController>();
+
 
         thisRigidbody2D = this.GetComponent<Rigidbody2D>();
         thisTransform = this.GetComponent<Transform>();
@@ -129,6 +136,10 @@ public class Juppy : MonoBehaviour
 
         // Make player jump
         thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
+
+        //Play jump sound
+        src.Play();
+
     }
 
     void ShakeScreen()
@@ -154,17 +165,19 @@ public class Juppy : MonoBehaviour
                 Jump();
 
                 other.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+
             }
 
             if (other.tag == "FallingPlatform")
             {
                 Jump();
-
+                Jump();
                 Transform platformParent = other.transform.parent;
 
                 MakePlatformSolid(platformParent);
 
                 other.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+
             }
 
         }

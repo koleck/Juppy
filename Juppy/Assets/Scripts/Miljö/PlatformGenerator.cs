@@ -203,8 +203,8 @@ public class PlatformGenerator : MonoBehaviour
 		livingMoodKillerCreated = false;
 		ClearAllPlatforms();
 		// Create platform
-		//GameObject platform = GetRandomPlatform();
-		//Instantiate(platform, new Vector2(lastGeneratedObjectX, juppy.SessionHeightScore - 100), platform.transform.rotation);
+		GameObject platform = GetRandomPlatform();
+                Instantiate(platform, new Vector2(lastGeneratedObjectX,  lastGeneratedObjectY), platform.transform.rotation);
 		generateHorizontally = !generateHorizontally;
 		changePlatformGenerationAxisTimer = 0;
 	    }
