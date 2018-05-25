@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-/Users/n/Desktop/apkfärdigigen.apk
+/Users/n/Desktop/apkfinal.apk
 SceneListBegin?
 Assets/Scenes/main.unity
 Assets/Scenes/Spelet.unity
@@ -167,7 +167,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 91333b98e294432cb6bbf7c67b32b260 Assembly-CSharp.dll:.ExtinguishableFire
-0583f6798b74d4fbe0eacda3c3efbd8d Assembly-CSharp.dll:.Juppy
+425139c265c8deab6989ddb01c662d6c Assembly-CSharp.dll:.Juppy
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Platform
 a764ed39791e886a53f13cfce418447e Assembly-CSharp.dll:UnityEngine.PostProcessing.PostProcessingProfile
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
