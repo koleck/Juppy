@@ -593,14 +593,14 @@ RectTransform:
   m_GameObject: {fileID: 424567395}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 481793632}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23710972, y: 0.17681634}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -35, y: -0.0000023841858}
+  m_AnchoredPosition: {x: -38, y: -2.7}
   m_SizeDelta: {x: 27.2, y: 2.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &424567397
@@ -743,7 +743,7 @@ RectTransform:
   m_GameObject: {fileID: 481793631}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 0.96650004}
+  m_LocalScale: {x: 6, y: 6, z: 0.96650004}
   m_Children:
   - {fileID: 424567396}
   m_Father: {fileID: 1214096680}
@@ -751,8 +751,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23710972, y: 0.17681634}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 372, y: 940}
-  m_SizeDelta: {x: -1080, y: -2094.6}
+  m_AnchoredPosition: {x: 395.41, y: 944}
+  m_SizeDelta: {x: -1080.55, y: -2094.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &481793633
 MonoBehaviour:
@@ -832,7 +832,7 @@ RectTransform:
   m_GameObject: {fileID: 678844081}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 0.9665}
+  m_LocalScale: {x: 6, y: 6, z: 0.9665}
   m_Children:
   - {fileID: 1363046006}
   m_Father: {fileID: 1214096680}
@@ -840,7 +840,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23710972, y: 0.17681634}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 384.19995, y: 822.69995}
+  m_AnchoredPosition: {x: 416, y: 770}
   m_SizeDelta: {x: -1075.4, y: -2089.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678844083
@@ -1251,7 +1251,7 @@ RectTransform:
   m_GameObject: {fileID: 1097410228}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 0.9665}
+  m_LocalScale: {x: 6, y: 6, z: 0.9665}
   m_Children:
   - {fileID: 1782294272}
   m_Father: {fileID: 1214096680}
@@ -1259,7 +1259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23710972, y: 0.17681634}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 400.26, y: 866.69995}
+  m_AnchoredPosition: {x: 438, y: 834}
   m_SizeDelta: {x: -1067, y: -2084.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1097410230
@@ -1484,14 +1484,14 @@ RectTransform:
   m_GameObject: {fileID: 1363046005}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 678844082}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23710972, y: 0.17681634}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -41.300003, y: -0.0000014305115}
+  m_AnchoredPosition: {x: -44.9, y: -0.65}
   m_SizeDelta: {x: 17.67, y: 1.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1363046007
@@ -1526,7 +1526,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mood
+  m_Text: Moodkiller
 --- !u!222 &1363046008
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1844,14 +1844,14 @@ RectTransform:
   m_GameObject: {fileID: 1782294271}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1097410229}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23710972, y: 0.17681634}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -45.7, y: 1.355}
+  m_AnchoredPosition: {x: -48.4, y: 0.000011920929}
   m_SizeDelta: {x: 14.76, y: -2.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1782294273

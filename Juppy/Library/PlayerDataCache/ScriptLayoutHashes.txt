@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-/Users/n/Desktop/FinalApk3.0.apk
+/Users/n/Desktop/apkfärdigigen.apk
 SceneListBegin?
 Assets/Scenes/main.unity
 Assets/Scenes/Spelet.unity

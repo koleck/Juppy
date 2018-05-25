@@ -44,15 +44,15 @@ ADDED from /Users/n/Documents/GitHub/uppy/Juppy/Temp/gradleOut/src/main/AndroidM
 activity#com.unity3d.player.UnityPlayerActivity
 ADDED from /Users/n/Documents/GitHub/uppy/Juppy/Temp/gradleOut/src/main/AndroidManifest.xml:5:5-12:16
 	android:screenOrientation
-		ADDED from /Users/n/Documents/GitHub/uppy/Juppy/Temp/gradleOut/src/main/AndroidManifest.xml:5:102-140
+		ADDED from /Users/n/Documents/GitHub/uppy/Juppy/Temp/gradleOut/src/main/AndroidManifest.xml:5:102-138
 	android:label
 		ADDED from /Users/n/Documents/GitHub/uppy/Juppy/Temp/gradleOut/src/main/AndroidManifest.xml:5:69-101
 	android:hardwareAccelerated
-		ADDED from /Users/n/Documents/GitHub/uppy/Juppy/Temp/gradleOut/src/main/AndroidManifest.xml:5:355-390
+		ADDED from /Users/n/Documents/GitHub/uppy/Juppy/Temp/gradleOut/src/main/AndroidManifest.xml:5:353-388
 	android:launchMode
-		ADDED from /Users/n/Documents/GitHub/uppy/Juppy/Temp/gradleOut/src/main/AndroidManifest.xml:5:141-172
+		ADDED from /Users/n/Documents/GitHub/uppy/Juppy/Temp/gradleOut/src/main/AndroidManifest.xml:5:139-170
 	android:configChanges
-		ADDED from /Users/n/Documents/GitHub/uppy/Juppy/Temp/gradleOut/src/main/AndroidManifest.xml:5:173-354
+		ADDED from /Users/n/Documents/GitHub/uppy/Juppy/Temp/gradleOut/src/main/AndroidManifest.xml:5:171-352
 	android:name
 		ADDED from /Users/n/Documents/GitHub/uppy/Juppy/Temp/gradleOut/src/main/AndroidManifest.xml:5:15-68
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER+android.intent.category.LEANBACK_LAUNCHER

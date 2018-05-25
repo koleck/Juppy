@@ -14,7 +14,7 @@ public class Juppy : MonoBehaviour
 
     Platform juppy;
 
-
+    public static AudioClip jumpSound;
     private AudioSource src;
 
 
@@ -66,7 +66,8 @@ public class Juppy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        src = GetComponent<AudioSource>();
+        
+        //src = GetComponent<AudioSource>();
         camera = GameObject.Find("Main Camera").GetComponent<CameraController>();
 
 
@@ -138,7 +139,8 @@ public class Juppy : MonoBehaviour
         thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
 
         //Play jump sound
-        src.Play();
+
+       // src.Play();
 
     }
 
@@ -164,7 +166,7 @@ public class Juppy : MonoBehaviour
             {
                 Jump();
 
-                other.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+                other.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0.25f, 0.25f, 0.25f, 0.8f, 0.8f, 0.8f);
 
             }
 
@@ -294,17 +296,25 @@ public class Juppy : MonoBehaviour
 
     void UpdateHighscores()
     {
-        if (hearts > Highscores.HighestHeartCount)
+        int highscoreheight = 0;
+        int highscorehearts = 0;
+        int highscoremoodkiller = 0;
+
+        if (hearts > PlayerPrefs.GetInt("hearts", highscorehearts))
         {
-            Highscores.HighestHeartCount = hearts;
+            //Highscores.HighestHeartCount = hearts;
+            PlayerPrefs.SetInt("hearts", hearts);
         }
-        if (sessionHeightScore > Highscores.HighestHeight)
+        if (sessionHeightScore > PlayerPrefs.GetInt("height", highscoreheight) )
         {
-            Highscores.HighestHeight = (int)sessionHeightScore;
+            //Highscores.HighestHeight = (int)sessionHeightScore;
+
+            PlayerPrefs.SetInt("height", (int)sessionHeightScore);
         }
-        if (moodkillersDefeated > Highscores.HighestMoodkillerCount)
+        if (moodkillersDefeated > PlayerPrefs.GetInt("moodkiller", highscoremoodkiller))
         {
-            Highscores.HighestMoodkillerCount = moodkillersDefeated;
+            //Highscores.HighestMoodkillerCount = moodkillersDefeated;
+            PlayerPrefs.SetInt("moodkiller", moodkillersDefeated);
         }
     }
 

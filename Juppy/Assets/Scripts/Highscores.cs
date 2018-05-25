@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class Highscores : MonoBehaviour {
 
-    public static int HighestHeight{get;set;}
-    public static int HighestMoodkillerCount{get;set;}
-    public static int HighestHeartCount{get;set;}
+    //public static int HighestHeight{get;set;}
+    //public static int HighestMoodkillerCount{get;set;}
+    //public static int HighestHeartCount{get;set;}
 
     [SerializeField]
     private Text heightText;
@@ -16,11 +16,21 @@ public class Highscores : MonoBehaviour {
     [SerializeField]
     private Text heartText;
 
-    void Update() {
-	heightText.text = HighestHeight.ToString();
+    void Start() {
 
-	moodKillerText.text = HighestMoodkillerCount.ToString();
+        int height =0;
+        height = PlayerPrefs.GetInt("height", height);
+        heightText.text = height.ToString();
 
-	heartText.text = HighestHeartCount.ToString();
+        int moodkiller = 0;
+        moodkiller = PlayerPrefs.GetInt("moodkiller", moodkiller);
+        moodKillerText.text = moodkiller.ToString();
+
+	//moodKillerText.text = HighestMoodkillerCount.ToString();
+
+	//heartText.text = HighestHeartCount.ToString();
+        int hearts = 0;
+        hearts = PlayerPrefs.GetInt("hearts", hearts);
+        heartText.text = hearts.ToString();
     }
 }
