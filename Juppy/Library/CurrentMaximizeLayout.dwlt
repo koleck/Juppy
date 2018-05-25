@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 16826
+  controlID: 22826
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 16827
+  controlID: 22827
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 16828
+  controlID: 22806
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,8 +165,8 @@ MonoBehaviour:
     y: 0
     width: 331
     height: 629
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -199,9 +199,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 302a0000
+    m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 4a19f9ffaa1ef9ff7875f9ff5a7cf9ff589df9ff6a59fcff2e5afcff565bfcff5a5bfcff685bfcffa074fcff6675fcff8e76fcff9276fcffa076fcff609afeffde82ffff269bffffee9bffff169dffff1a9dffff289dffffb8f4fffffaf9ffff00000000fc3100003e32000064320000d2390000003a00001a3a00005e5a0000725a00007c5a0000945a0000a05a0000ba5a000056600000d4650000de650000f6650000026600005c810000968200002e830000
+    m_ExpandedIDs: 88c1f8ff16caf8ff26cbf8ff02ccf8ff6ccdf8ffc201f9ff8202f9ffae03f9ffe803f9fff003f9ff4a19f9ffaa1ef9ff7875f9ff5a7cf9ff589df9ff6a59fcff2e5afcff565bfcff5a5bfcff685bfcffa074fcff6675fcff8e76fcff9276fcffa076fcff609afeffde82ffff269bffffee9bffff169dffff1a9dffff289dffffb8f4fffffaf9ffff00000000fc3100003e32000064320000d2390000003a00001a3a00005e5a0000725a00007c5a0000945a0000a05a0000ba5a000056600000d4650000de650000f6650000026600005c810000968200002e830000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -419,19 +419,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts/Spelare
+    - Assets/Sound
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Spelare
+  - Assets/Sound
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/n/Documents/GitHub/uppy/Juppy
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 59}
-    m_SelectedIDs: f62e0000
-    m_LastClickedID: 12022
+    m_SelectedIDs: 602a0000
+    m_LastClickedID: 10848
     m_ExpandedIDs: 00000000122a00009c2a00007c2f000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -485,8 +485,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 302a0000
-    m_LastClickedInstanceID: 10800
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:

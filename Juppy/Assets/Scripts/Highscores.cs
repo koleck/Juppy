@@ -17,7 +17,7 @@ public class Highscores : MonoBehaviour {
     private Text heartText;
 
     void Start() {
-
+        
         int height =0;
         height = PlayerPrefs.GetInt("height", height);
         heightText.text = height.ToString();

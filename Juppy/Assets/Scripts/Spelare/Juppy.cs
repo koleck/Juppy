@@ -15,7 +15,15 @@ public class Juppy : MonoBehaviour
     Platform juppy;
 
     public static AudioClip jumpSound;
+    public static AudioClip heartLjud;
+
+    public static AudioClip lostLife;
+    public static AudioClip dies;
     private AudioSource src;
+    private AudioSource src2;
+
+    private AudioSource src4;
+    private AudioSource src5;
 
 
     // Used by on-screen buttons
@@ -27,6 +35,8 @@ public class Juppy : MonoBehaviour
     public bool UIMoveLeft { get { return uiMoveLeft; } set { uiMoveLeft = value; } }
 
     public bool UIMoveRight { get { return uiMoveRight; } set { uiMoveRight = value; } }
+
+    public bool dead = false;
 
     [SerializeField]
     int hearts;
@@ -44,7 +54,7 @@ public class Juppy : MonoBehaviour
     float sessionHeightScore = 0;
 
     [SerializeField]
-    GameObject heartProjectile;
+
 
     SpriteRenderer backgroundSpriteRenderer;
 
@@ -62,12 +72,16 @@ public class Juppy : MonoBehaviour
 
     public int MoodKiller { get { return moodkiller; } set { moodkiller = value; } }
 
-
+    public int höjd = 2000;
     // Use this for initialization
     void Start()
     {
         
-        //src = GetComponent<AudioSource>();
+        src = GameObject.Find("Audio Source").GetComponent<AudioSource>();
+        src2 = GameObject.Find("heartSound").GetComponent<AudioSource>();
+
+        src4 = GameObject.Find("loselife").GetComponent<AudioSource>();
+        src5 = GameObject.Find("juppydies").GetComponent<AudioSource>();
         camera = GameObject.Find("Main Camera").GetComponent<CameraController>();
 
 
@@ -87,21 +101,27 @@ public class Juppy : MonoBehaviour
 	    thisTransform.localScale = new Vector3(0.3f, 0.3f, 1);
 	}
 
+      
+        if (dead == true)
+        {
+            juppyDieSound();
+        }
+
 
 	if (sessionHeightScore < thisTransform.position.y)
 	{
 	    sessionHeightScore = thisTransform.position.y;
-	}
-	else if (thisTransform.position.y < sessionHeightScore - 2000)
+
+        } 
+
+	else if (thisTransform.position.y < sessionHeightScore - höjd)
 	{
+            dead = true;
 	    Kill();
+
 	}
 
 
-        if (Input.GetKeyDown("z"))
-        {
-            ShootProjectile();
-        }
 
         if (Input.GetKey("left") || uiMoveLeft)
         {
@@ -117,14 +137,32 @@ public class Juppy : MonoBehaviour
         }
     }
 
-    public void ShootProjectile()
+  
+   
+
+    void lostLifeSound()
     {
-        if (hearts > 0)
-        {
-            Instantiate(heartProjectile, thisTransform.position, thisTransform.rotation);
-            hearts--;
-        }
+        src4.PlayOneShot(lostLife, 0.2f);
+        src4.Play();
     }
+
+    void jumpSoundet(){
+        src.PlayOneShot(jumpSound, 0.1f);
+        src.Play();
+
+    }
+
+    void collectHeartSound(){
+        src2.PlayOneShot(heartLjud, 0.2f);
+        src2.Play();
+    }
+
+    void juppyDieSound()
+    {
+        src5.PlayOneShot(dies, 0.2f);
+        src5.Play();
+    }
+
 
     void Jump()
     {
@@ -139,10 +177,23 @@ public class Juppy : MonoBehaviour
         thisRigidbody2D.AddForce(thisTransform.up * jumpForce);
 
         //Play jump sound
-
-       // src.Play();
-
+        jumpSoundet();
     }
+
+    void miniJump()
+    {
+        thisTransform.localScale = new Vector3(0.3f, 0.18f, 1);
+
+
+        // Reset momentum
+        thisRigidbody2D.velocity = new Vector2(thisRigidbody2D.velocity.x, 0);
+
+        // Make player jump
+        thisRigidbody2D.AddForce(thisTransform.up * 500000);
+
+        jumpSoundet();
+    }
+
 
     void ShakeScreen()
     {
@@ -173,7 +224,11 @@ public class Juppy : MonoBehaviour
             if (other.tag == "FallingPlatform")
             {
                 Jump();
-                Jump();
+
+                miniJump();
+
+
+
                 Transform platformParent = other.transform.parent;
 
                 MakePlatformSolid(platformParent);
@@ -219,15 +274,17 @@ public class Juppy : MonoBehaviour
             if (hearts < 1)
             {
                 Kill();
+
             }
             else
             {
                 StartCoroutine(BecomeSad(1.0f));
                 hearts--;
+                lostLifeSound();
 
 		ShakeScreen();
 
-		Jump();
+		
             }
 
             other.GetComponent<MoodKiller>().kill();
@@ -238,11 +295,13 @@ public class Juppy : MonoBehaviour
             if (hearts < 1)
             {
                 Kill();
+
             }
             else
             {
                 StartCoroutine(BecomeSad(1.0f));
                 hearts--;
+                lostLifeSound();
 
 		ShakeScreen();
 
@@ -258,11 +317,12 @@ public class Juppy : MonoBehaviour
 	{
 	    Heart heart = other.GetComponent<Heart>();
 	    heart.Kill();
-	    hearts++;
-
+            hearts++;
 	    ShakeScreen();
-
+            collectHeartSound();
 	    StartCoroutine(BecomeHappier(1.0f));
+
+            
 	}
 
     }

@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{E8EBF9BA-7A2F-0926-7E1C-241B84D82448}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Highscores.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Spelare/Juppy.cs">
     <Files>
       <File FileName="Assets/Scripts/Miljö/Platform.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/mainmeny.cs" Line="21" Column="5" />
-      <File FileName="Assets/Scripts/MoodKiller.cs" Line="17" Column="11" />
+      <File FileName="Assets/Scripts/MoodKiller.cs" Line="3" Column="1" />
       <File FileName="Assets/Scripts/Miljö/PlatformGenerator.cs" Line="209" Column="41" />
-      <File FileName="Assets/Scripts/Spelare/Juppy.cs" Line="301" Column="15" />
-      <File FileName="Assets/Scripts/Highscores.cs" Line="19" Column="10" />
+      <File FileName="Assets/Scripts/Spelare/Juppy.cs" Line="109" Column="9" />
+      <File FileName="Assets/Scripts/Highscores.cs" Line="33" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
