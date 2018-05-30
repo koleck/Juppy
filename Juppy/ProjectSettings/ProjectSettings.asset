@@ -238,8 +238,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: grupp8.keystore
+  AndroidKeyaliasName: grupp8
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   AndroidEnableTango: 0
